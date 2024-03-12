@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { CountPhotos } from './lib/s3';
-import { FormUpload } from './lib/upload';
+import { CountPhotos } from '../lib/s3';
+import { FormUpload } from '../lib/upload';
 
 export const dynamic = 'auto';
 
-export default async function Example() {
+export default async function Thanks() {
 	const NbPhotos = await CountPhotos();
 
 	return (
@@ -30,15 +30,33 @@ export default async function Example() {
 						}}
 					/>
 				</div>
-				<div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+				<div className="mx-auto max-w-2xl py-10 sm:py-48 lg:py-56">
 					<div className="text-center h-full">
-						<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Mathieu Stag Party</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600">Help us collect the best memories of Mathieu</p>
-						<FormUpload Name="Take a photo" />
+						<h1 className="text-4xl mb-32 font-bold tracking-tight text-gray-900 sm:text-6xl">Achievements</h1>
+					</div>
 
-						<p className="mt-32 text-lg leading-8 text-gray-600">
-							Mathieu has currently <span className="font-bold">{NbPhotos} </span>souvenirs
-						</p>
+					<div className="mb-10">
+						<p className="font-semibold mb-1">Goal 1</p>
+						<div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+							<div className="bg-indigo-600 h-2.5 rounded-full w-10/12"></div>
+						</div>
+						<p className="font-semibold mb-1 text-indigo-600">{NbPhotos}/50</p>
+					</div>
+
+					<div className="mb-10">
+						<p className="font-semibold mb-1">Goal 3</p>
+						<div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+							<div className="bg-indigo-600 h-2.5 rounded-full w-4/12"></div>
+						</div>
+						<p className="font-semibold mb-1 text-indigo-600">{NbPhotos}/100</p>
+					</div>
+
+					<div className="mb-10">
+						<p className="font-semibold mb-1">Goal 3</p>
+						<div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+							<div className="bg-indigo-600 h-2.5 rounded-full w-2/12"></div>
+						</div>
+						<p className="font-semibold mb-1 text-indigo-600">{NbPhotos}/150</p>
 					</div>
 				</div>
 				<div
@@ -51,6 +69,11 @@ export default async function Example() {
 								'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
 						}}
 					/>
+				</div>
+				<div className="w-full items-center justify-center text-center">
+					<Link href={'/'} className=" text-lg leading-8 text-indigo-600 mb-10">
+						Back
+					</Link>
 				</div>
 			</div>
 		</div>
