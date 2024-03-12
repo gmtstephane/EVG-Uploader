@@ -1,5 +1,6 @@
 import { s3Client } from '@/app/lib/s3';
 import { NextResponse } from 'next/server';
+
 export const dynamic = 'auto';
 
 export async function POST(req: Request) {
@@ -12,28 +13,24 @@ export async function POST(req: Request) {
 
 	try {
 		const fileFile = formData.get('image') as File | null;
-		const exstension = fileFile?.name.split('.').pop();
+		const extension = fileFile?.name.split('.').pop();
 		let b = await file.arrayBuffer();
 		let buffer = Buffer.from(b);
 
-		await s3Client.putObject(
-			{
+		// Use the promise form of putObject
+		const data = await s3Client
+			.putObject({
 				Bucket: 'evg-mathieu',
-				Key: new Date().toISOString() + '.' + exstension,
+				Key: `${new Date().toISOString()}.${extension}`,
 				Body: buffer,
-			},
-			(err, data) => {
-				if (err) {
-					console.error('Error', err);
-					return NextResponse.json({ message: 'Upload failed' }, { status: 500 });
-				}
-				console.log('Data', data);
-			}
-		);
+			})
+			.promise();
 
-		return NextResponse.json({ message: ' successful' });
+		// Now, this line will only execute after the upload is complete
+		console.log('Upload Success', data);
+		return NextResponse.json({ message: 'Upload successful' });
 	} catch (error) {
-		console.log('error', error);
+		console.error('Upload error', error);
 		return NextResponse.json({ message: 'Upload failed' }, { status: 500 });
 	}
 }

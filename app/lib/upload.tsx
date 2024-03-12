@@ -31,6 +31,7 @@ export function FormUpload({ Name }: FormUploadProps) {
 				method: 'POST',
 				body: formData,
 			});
+			console.log(response);
 			if (response.ok) {
 				setLoading(false);
 				console.log('Image uploaded successfully');
