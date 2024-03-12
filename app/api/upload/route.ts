@@ -10,24 +10,30 @@ export async function POST(req: Request) {
 		return NextResponse.json({ message: 'No file uploaded' }, { status: 400 });
 	}
 
-	const fileFile = formData.get('image') as File | null;
-	const exstension = fileFile?.name.split('.').pop();
-	let b = await file.arrayBuffer();
-	let buffer = Buffer.from(b);
-	await s3Client.putObject(
-		{
-			Bucket: 'evg-mathieu',
-			Key: new Date().toISOString() + '.' + exstension,
-			Body: buffer,
-		},
-		(err, data) => {
-			if (err) {
-				console.error('Error', err);
-				return NextResponse.json({ message: 'Upload failed' }, { status: 500 });
-			}
-			console.log('Data', data);
-		}
-	);
+	try {
+		const fileFile = formData.get('image') as File | null;
+		const exstension = fileFile?.name.split('.').pop();
+		let b = await file.arrayBuffer();
+		let buffer = Buffer.from(b);
 
-	return NextResponse.json({ message: 'reCAPTCHA verification successful' });
+		await s3Client.putObject(
+			{
+				Bucket: 'evg-mathieu',
+				Key: new Date().toISOString() + '.' + exstension,
+				Body: buffer,
+			},
+			(err, data) => {
+				if (err) {
+					console.error('Error', err);
+					return NextResponse.json({ message: 'Upload failed' }, { status: 500 });
+				}
+				console.log('Data', data);
+			}
+		);
+
+		return NextResponse.json({ message: ' successful' });
+	} catch (error) {
+		console.log('error', error);
+		return NextResponse.json({ message: 'Upload failed' }, { status: 500 });
+	}
 }
