@@ -74,7 +74,7 @@ export default async function Alt() {
 			<div className='h-1/2 py-5 px-5'>
 				<div className="text-center">
 					<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mt-5">Mathieu Stag Party</h1>
-					<p className="mt-6 text-lg leading-8 text-gray-600 ">Now that you're here,<br></br> Take this guy in photo to help us create memories</p>
+					<p className="mt-6 text-lg leading-8 text-gray-600 ">Now that you&apos;re here,<br></br> Take this guy in photo to help us create memories</p>
 					<FormUpload Name="Take a photo" />
 					<p className="text-lg leading-8 text-gray-600">
 						Mathieu has currently <span className="font-bold">{NbPhotos} </span>souvenirs
