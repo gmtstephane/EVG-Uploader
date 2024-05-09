@@ -68,13 +68,14 @@ export default async function Alt() {
 					<Image alt="mathieu alt" src='/photo-transparent.png'
 						layout='fill'
 						objectFit='cover'
+						priority={true}
 					/>
 				</div>
 			</div>
 			<div className='h-1/2  px-5 flex-row'>
 				<div className="text-center">
-					<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mt-2">Mathieu Stag Party</h1>
-					<p className="mt-3 text-lg leading-8 text-gray-600 ">Now that you&apos;re here,<br></br> Take this guy in photo to help us create memories</p>
+					{/* <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mt-2">Mathieu Stag Party</h1> */}
+					<p className="mt-4 text-lg font-semibold text-black">Now that you&apos;re here,<br></br> Take this guy in photo to help us create memories</p>
 					<FormUpload Name="Take a photo" />
 					<p className="text-lg leading-8 text-gray-600">
 						Mathieu has currently <span className="font-bold">{NbPhotos} </span>souvenirs
