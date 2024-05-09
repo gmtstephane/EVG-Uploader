@@ -49,7 +49,7 @@ export function FormUpload({ Name }: FormUploadProps) {
 	};
 
 	return (
-		<form className="mt-10 mb-10 flex	 items-center justify-center gap-x-6">
+		<form className="mt-5 mb-5 flex	 items-center justify-center gap-x-6">
 			<input
 				capture="environment" // This attribute suggests opening the camera on mobile devices
 				type="file"
