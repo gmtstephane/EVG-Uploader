@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { CountPhotos } from './lib/s3';
 import { FormUpload } from './lib/upload';
+import Image from 'next/image';
 
 export const dynamic = 'auto';
 
-export default async function Example() {
+async function Example() {
 	const NbPhotos = await CountPhotos();
 
 	return (
@@ -35,7 +36,6 @@ export default async function Example() {
 						<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Mathieu Stag Party</h1>
 						<p className="mt-6 text-lg leading-8 text-gray-600">Help us collect the best memories of Mathieu</p>
 						<FormUpload Name="Take a photo" />
-
 						<p className="mt-32 text-lg leading-8 text-gray-600">
 							Mathieu has currently <span className="font-bold">{NbPhotos} </span>souvenirs
 						</p>
@@ -51,6 +51,34 @@ export default async function Example() {
 								'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
 						}}
 					/>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+
+export default async function Alt() {
+	const NbPhotos = await CountPhotos();
+
+	return (
+		<div className="bg-white h-screen overflow-hidden">
+			<div className='h-1/2  px-3 pt-2'>
+				<div className='h-full w-full bg-indigo-600 rounded-[40px]  overflow-hidden relative'>
+					<Image alt="mathieu alt" src='/photo-transparent.png'
+						layout='fill'
+						objectFit='cover'
+					/>
+				</div>
+			</div>
+			<div className='h-1/2 py-5 px-5'>
+				<div className="text-center">
+					<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mt-5">Mathieu Stag Party</h1>
+					<p className="mt-6 text-lg leading-8 text-gray-600 ">Now that you're here,<br></br> Take this guy in photo to help us create memories</p>
+					<FormUpload Name="Take a photo" />
+					<p className="text-lg leading-8 text-gray-600">
+						Mathieu has currently <span className="font-bold">{NbPhotos} </span>souvenirs
+					</p>
 				</div>
 			</div>
 		</div>
